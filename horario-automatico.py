@@ -1,71 +1,59 @@
-import itertools
+from itertools import combinations
 
 # DISPONIBILIDADES DE TODAS AS MATERIAS 1 = DISPONIBILIDADE 2 = PREFERENCIA
-disponibilidadepormateria = [[0, 0, 1, 2, 2],  # AFRICANIDADES
-                             [0, 0, 0, 1, 0],  # ÁLGEBRA
-                             [0, 0, 1, 0, 0],  # BIO - ECOSSISTEMAS
-                             [0, 0, 0, 0, 2],  # BIO - ORGANISMOS
-                             [0, 0, 0, 1, 2],  # FILOSOFIA
-                             [0, 0, 0, 1, 0],  # FÍSICA 1
-                             [0, 2, 0, 0, 0],  # FÍSICA 2
-                             [2, 1, 0, 1, 1],  # GEOGRAFIA
-                             [0, 2, 0, 1, 0],  # GEOGRAFIA
-                             [1, 2, 1, 0, 0],  # GEOMETRIA
-                             [2, 0, 1, 1, 0],  # HISTÓRIA
-                             [0, 0, 1, 0, 0],  # HISTÓRIA
-                             [1, 2, 0, 0, 0],  # MATEMÁTICA PBL
-                             [0, 0, 0, 0, 2],  # QUÍMICA DA VIDA
-                             [2, 2, 0, 0, 0],  # QUÍMICA GERAL
-                             [0, 0, 0, 2, 0],  # SOCIOLOGIA
-                             [2, 0, 1, 0, 0],  # TEXTO 1
-                             [0, 0, 1, 2, 0],  # TEXTO 1
-                             [2, 1, 0, 0, 0],  # TEXTO 2
-                             [0, 1, 0, 0, 2]]  # TRATAMENTO DE INFORMAÇÃO
-nomematerias = ['Africanidades',
-                'Álgebra',
-                'Bio - Ecossistemas',
-                'Bio - Organismos',
-                'Filosofia',
-                'Física 1',
-                'Física 2',
-                'Geografia',
-                'Geografia',
-                'Geometria',
-                'História',
-                'História',
-                'Matemática PBL',
-                'Química da Vida',
-                'Química Geral',
-                'Sociologia',
-                'Texto 1',
-                'Texto 1',
-                'Texto 2',
-                'Tratamento de Informação']
 
-# CRIEI VETORES VAZIOS PARA CADA UM DOS DIAS DA SEMANA
-disponibilidadesegunda = []
-disponibilidadeterca = []
-disponibilidadequarta = []
-disponibilidadequinta = []
-disponibilidadesexta = []
+materias = {
+    'Africanidades': [0, 0, 1, 2, 2],
+    'Álgebra': [0, 0, 0, 1, 0],
+    'Bio - Ecossistemas': [0, 0, 1, 0, 0],
+    'Bio - Organismos': [0, 0, 0, 0, 2],
+    'Filosofia': [0, 0, 0, 1, 2],
+    'Física 1': [0, 0, 0, 1, 0],
+    'Física 2': [0, 2, 0, 0, 0],
+    'Geografia': [2, 1, 0, 1, 1],
+    'Geografia': [0, 2, 0, 1, 0],
+    'Geometria': [1, 2, 1, 0, 0],
+    'História': [2, 0, 1, 1, 0],
+    'História': [0, 0, 1, 0, 0],
+    'Matemática PBL': [1, 2, 0, 0, 0],
+    'Química da Vida': [0, 0, 0, 0, 2],
+    'Química Geral': [2, 2, 0, 0, 0],
+    'Sociologia': [0, 0, 0, 2, 0],
+    'Texto 1': [2, 0, 1, 0, 0],
+    'Texto 1': [0, 0, 1, 2, 0],
+    'Texto 2': [2, 1, 0, 0, 0],
+    'Tratamento de Informação': [0, 1, 0, 0, 2]
+}
+
+disponibilidades = {
+    'segunda': [],
+    'terca': [],
+    'quarta': [],
+    'quinta': [],
+    'sexta': []
+}
 
 # COLOQUEI OS INDICES DAS DISCIPLINAS DISPONIVEIS EM CADA UM DOS VETORES (EX: NO VETOR DA SEGUNDA ESTÃO OS INDICES DE TODAS AS DISCIPLINAS QUE TEM DISPONIBILIDADE
 # NA SEGUNDA)
-for i in range(len(disponibilidadepormateria)):
-    if disponibilidadepormateria[i][0] >= 1:
-        disponibilidadesegunda += [i]
+for materia, disponibilidade in materias.items():
+    if disponibilidade[0] >= 1:
+        disponibilidades['segunda'].append(materia)
 
-    if disponibilidadepormateria[i][1] >= 1:
-        disponibilidadeterca += [i]
+    if disponibilidade[1] >= 1:
+        disponibilidades['terca'].append(materia)
 
-    if disponibilidadepormateria[i][2] >= 1:
-        disponibilidadequarta += [i]
+    if disponibilidade[2] >= 1:
+        disponibilidades['quarta'].append(materia)
 
-    if disponibilidadepormateria[i][3] >= 1:
-        disponibilidadequinta += [i]
+    if disponibilidade[3] >= 1:
+        disponibilidades['quinta'].append(materia)
 
-    if disponibilidadepormateria[i][4] >= 1:
-        disponibilidadesexta += [i]
+    if disponibilidade[4] >= 1:
+        disponibilidades['sexta'].append(materia)
+
+for dia, materia in disponibilidades.items():
+    print(f'{dia}: {materia}')
+
 
 # CRIEI UM VETOR PARA CADA DIA DA SEMANA PARA ARMAZENAR TODAS AS COMBINACOES DE DISCIPLINAS POSSIVEIS NAQUELE DIA
 possibilidadessegunda = []
@@ -79,10 +67,21 @@ horario02 = []
 horario03 = []
 horario04 = []
 
-# FIZ TODAS AS COMBINAÇÃO POSSIVEIS PARA TODOS OS DIAS DA SEMANA BASEADA NAS DISPONIBILIDADES DOS PROFESSORES
-for i in itertools.combinations(disponibilidadesegunda, 4):
-    possibilidadessegunda += [i]
+materias_por_dia = {
+    'segunda': [],
+    'terca': [],
+    'quarta': [],
+    'quinta': [],
+    'sexta': []
+}
 
+# FIZ TODAS AS COMBINAÇÃO POSSIVEIS PARA TODOS OS DIAS DA SEMANA BASEADA NAS DISPONIBILIDADES DOS PROFESSORES
+for conjunto_de_materias in combinations(disponibilidades['segunda'], 4):
+    materias_por_dia['segunda'].append(conjunto_de_materias)
+
+print(materias_por_dia)
+
+"""
 for i in itertools.combinations(disponibilidadeterca, 4):
     possibilidadesterca += [i]
 
@@ -189,3 +188,4 @@ print('SEXTA-FEIRA')
 for i in range(16, 20):
     print(nomematerias[possibilidades[(len(possibilidades) - 1)][0][i]])
 print(' ')
+"""
