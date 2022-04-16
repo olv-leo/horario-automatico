@@ -1,31 +1,6 @@
 import itertools
 
 # DISPONIBILIDADES DE TODAS AS MATERIAS 1 = DISPONIBILIDADE 2 = PREFERENCIA
-
-materias = {
-    'Africanidades': [0, 0, 1, 2, 2],
-    'Álgebra': [0, 0, 0, 1, 0],
-    'Bio - Ecossistemas': [0, 0, 1, 0, 0],
-    'Bio - Organismos': [0, 0, 0, 0, 2],
-    'Filosofia': [0, 0, 0, 1, 2],
-    'Física 1': [0, 0, 0, 1, 0],
-    'Física 2': [0, 2, 0, 0, 0],
-    'Geografia': [2, 1, 0, 1, 1],
-    'Geografia': [0, 2, 0, 1, 0],
-    'Geometria': [1, 2, 1, 0, 0],
-    'História': [2, 0, 1, 1, 0],
-    'História': [0, 0, 1, 0, 0],
-    'Matemática PBL': [1, 2, 0, 0, 0],
-    'Química da Vida': [0, 0, 0, 0, 2],
-    'Química Geral': [2, 2, 0, 0, 0],
-    'Sociologia': [0, 0, 0, 2, 0],
-    'Texto 1': [2, 0, 1, 0, 0],
-    'Texto 1': [0, 0, 1, 2, 0],
-    'Texto 2': [2, 1, 0, 0, 0],
-    'Tratamento de Informação': [0, 1, 0, 0, 2]
-}
-
-
 disponibilidadepormateria = [[0, 0, 1, 2, 2],  # AFRICANIDADES
                              [0, 0, 0, 1, 0],  # ÁLGEBRA
                              [0, 0, 1, 0, 0],  # BIO - ECOSSISTEMAS
@@ -107,7 +82,6 @@ horario04 = []
 # FIZ TODAS AS COMBINAÇÃO POSSIVEIS PARA TODOS OS DIAS DA SEMANA BASEADA NAS DISPONIBILIDADES DOS PROFESSORES
 for i in itertools.combinations(disponibilidadesegunda, 4):
     possibilidadessegunda += [i]
-print(possibilidadessegunda)
 
 for i in itertools.combinations(disponibilidadeterca, 4):
     possibilidadesterca += [i]
