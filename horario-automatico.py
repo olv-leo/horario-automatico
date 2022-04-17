@@ -29,28 +29,14 @@ materias = {
 
 disponibilidades = {dia_da_semana: [] for dia_da_semana in DIAS_DA_SEMANA}
 
-# COLOQUEI OS INDICES DAS DISCIPLINAS DISPONIVEIS EM CADA UM DOS VETORES (EX: NO VETOR DA SEGUNDA ESTÃO OS INDICES DE TODAS AS DISCIPLINAS QUE TEM DISPONIBILIDADE
-# NA SEGUNDA)
 for materia, disponibilidade in materias.items():
-    if disponibilidade[0] >= 1:
-        disponibilidades[SEGUNDA].append(materia)
-
-    if disponibilidade[1] >= 1:
-        disponibilidades[TERCA].append(materia)
-
-    if disponibilidade[2] >= 1:
-        disponibilidades[QUARTA].append(materia)
-
-    if disponibilidade[3] >= 1:
-        disponibilidades[QUINTA].append(materia)
-
-    if disponibilidade[4] >= 1:
-        disponibilidades[SEXTA].append(materia)
+    for indice, dia_da_semana in enumerate(DIAS_DA_SEMANA):
+        if disponibilidade[indice] >= 1:
+            disponibilidades[dia_da_semana].append(materia)
 
 for dia, materia in disponibilidades.items():
     print(f'{dia}: {materia}')
 
-# CRIEI UM VETOR PARA CADA DIA DA SEMANA PARA ARMAZENAR TODAS AS COMBINACOES DE DISCIPLINAS POSSIVEIS NAQUELE DIA
 possibilidadessegunda = []
 possibilidadesterca = []
 possibilidadesquarta = []
