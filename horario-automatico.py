@@ -79,7 +79,6 @@ materias_por_dia = {
 for conjunto_de_materias in combinations(disponibilidades['segunda'], 4):
     materias_por_dia['segunda'].append(conjunto_de_materias)
 
-print(materias_por_dia)
 
 """
 for i in itertools.combinations(disponibilidadeterca, 4):
