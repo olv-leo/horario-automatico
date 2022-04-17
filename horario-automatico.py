@@ -1,6 +1,8 @@
 from itertools import combinations
 
 # DISPONIBILIDADES DE TODAS AS MATERIAS 1 = DISPONIBILIDADE 2 = PREFERENCIA
+SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA = 'segunda', 'terca', 'quarta', 'quinta', 'sexta'
+DIAS_DA_SEMANA = [SEGUNDA, TERCA, QUARTA, QUINTA, SEXTA]
 
 materias = {
     'Africanidades': [0, 0, 1, 2, 2],
@@ -25,35 +27,28 @@ materias = {
     'Tratamento de Informação': [0, 1, 0, 0, 2]
 }
 
-disponibilidades = {
-    'segunda': [],
-    'terca': [],
-    'quarta': [],
-    'quinta': [],
-    'sexta': []
-}
+disponibilidades = {dia_da_semana: [] for dia_da_semana in DIAS_DA_SEMANA}
 
 # COLOQUEI OS INDICES DAS DISCIPLINAS DISPONIVEIS EM CADA UM DOS VETORES (EX: NO VETOR DA SEGUNDA ESTÃO OS INDICES DE TODAS AS DISCIPLINAS QUE TEM DISPONIBILIDADE
 # NA SEGUNDA)
 for materia, disponibilidade in materias.items():
     if disponibilidade[0] >= 1:
-        disponibilidades['segunda'].append(materia)
+        disponibilidades[SEGUNDA].append(materia)
 
     if disponibilidade[1] >= 1:
-        disponibilidades['terca'].append(materia)
+        disponibilidades[TERCA].append(materia)
 
     if disponibilidade[2] >= 1:
-        disponibilidades['quarta'].append(materia)
+        disponibilidades[QUARTA].append(materia)
 
     if disponibilidade[3] >= 1:
-        disponibilidades['quinta'].append(materia)
+        disponibilidades[QUINTA].append(materia)
 
     if disponibilidade[4] >= 1:
-        disponibilidades['sexta'].append(materia)
+        disponibilidades[SEXTA].append(materia)
 
 for dia, materia in disponibilidades.items():
     print(f'{dia}: {materia}')
-
 
 # CRIEI UM VETOR PARA CADA DIA DA SEMANA PARA ARMAZENAR TODAS AS COMBINACOES DE DISCIPLINAS POSSIVEIS NAQUELE DIA
 possibilidadessegunda = []
@@ -67,32 +62,14 @@ horario02 = []
 horario03 = []
 horario04 = []
 
-materias_por_dia = {
-    'segunda': [],
-    'terca': [],
-    'quarta': [],
-    'quinta': [],
-    'sexta': []
-}
+materias_por_dia = {dia_da_semana: [] for dia_da_semana in DIAS_DA_SEMANA}
 
 # FIZ TODAS AS COMBINAÇÃO POSSIVEIS PARA TODOS OS DIAS DA SEMANA BASEADA NAS DISPONIBILIDADES DOS PROFESSORES
-for conjunto_de_materias in combinations(disponibilidades['segunda'], 4):
-    materias_por_dia['segunda'].append(conjunto_de_materias)
-
+for dia_da_semana in DIAS_DA_SEMANA:
+    for conjunto_de_materias in combinations(disponibilidades[dia_da_semana], 4):
+        materias_por_dia[dia_da_semana].append(conjunto_de_materias)
 
 """
-for i in itertools.combinations(disponibilidadeterca, 4):
-    possibilidadesterca += [i]
-
-for i in itertools.combinations(disponibilidadequarta, 4):
-    possibilidadesquarta += [i]
-
-for i in itertools.combinations(disponibilidadequinta, 4):
-    possibilidadesquinta += [i]
-
-for i in itertools.combinations(disponibilidadesexta, 4):
-    possibilidadessexta += [i]
-
 segundaterca = []
 segundaterca01 = []
 
